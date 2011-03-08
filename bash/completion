@@ -1,0 +1,8 @@
+export COMP_WORDBREAKS=${COMP_WORDBREAKS/\:/}
+
+_pipcomplete() {
+  COMPREPLY=($(compgen -W "`pip help | grep '\s[A-Za-z0-9]\+:\s' | awk '{{print $1}}' | sed 's/://g'`" -- ${COMP_WORDS[COMP_CWORD\]}))
+  return 0
+}
+
+complete -o default -o nospace -F _pipcomplete pip

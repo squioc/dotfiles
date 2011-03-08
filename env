@@ -1,0 +1,8 @@
+export PATH="$PATH:$HOME/.bin"
+
+for dir in $(ls ~/.bin/); do
+  if [ -d "$HOME/.bin/$dir" ]; then
+	PATH="$PATH:$HOME/.bin/$dir";
+  fi
+done
+export PATH

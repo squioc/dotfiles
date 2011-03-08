@@ -1,0 +1,6 @@
+
+alias youtube-dl="youtube-dl.py"
+alias json2yaml="format.py --input json --output yaml"
+alias yaml2json="format.py --input yaml --output json"
+alias json="format.py --input json --output json"
+alias yaml="format.py --input yaml --output json"

@@ -1,0 +1,13 @@
+﻿for file in $(ls ~/.bash_bundle); do
+  if [ -f ~/.bash_bundle/$file/env ]; then
+     . ~/.bash_bundle/$file/env
+  fi
+
+  if [ -f ~/.bash_bundle/$file/alias ]; then
+    . ~/.bash_bundle/$file/alias
+  fi
+
+  if [ -f ~/.bash_bundle/$file/fun ]; then
+    . ~/.bash_bundle/$file/fun
+  fi
+done

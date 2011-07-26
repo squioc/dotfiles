@@ -85,3 +85,16 @@ endfunction
 
 nmap <F4> :call ToggleSpell()<CR>
 imap <F4> <Esc>:call ToggleSpell()<CR>a
+
+" Auto-complétion Multiple
+function! MultipleAutoCompletion()
+    if &omnifunc != ''
+        return "\<C-x>\<C-o>"
+    elseif &dictionary != ''
+        return "\<C-x>\<C-k>"
+    else
+        return "\<C-x>\<C-n>"
+    endif
+endfunction
+
+inoremap <C-Space> <C-r>=MultipleAutoCompletion()<CR> 

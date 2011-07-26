@@ -22,6 +22,9 @@ endif
 " Activation de la numérotation des lignes
 set number
 
+" Modification du leader
+let mapleader=","
+
 " Définition de l'encodage des fichiers
 set fileencoding=iso-8859-1
 

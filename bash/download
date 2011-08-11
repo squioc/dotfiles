@@ -1,0 +1,5 @@
+function git-download { git clone $1 $2; }
+
+function curl-download { curl $1 > $2; }
+
+function wget-download { wget -o $2 $1; }

@@ -1,0 +1,7 @@
+#function youtube-video { echo $(echo "http://youtube.com/get_video.php?$(curl -s $1 | sed -n "/watch_fullscreen/s;.*\(video_id.\+\)&title.*;\1;p")"); }
+
+function youtube-video { echo $(youtube-dl -g $1); }
+
+function youtube-mp { mplayer -fs $(youtube-video $1); }
+
+function youtube-vlc { vlc -vvv $(youtube-video $1); }

@@ -1,0 +1,9 @@
+rmalias() {
+        unalias $1 && sed -i "/alias $1\=/d" ~/.alias
+}
+
+mkalias() {
+    echo -e "\n# added `date "+%F %T"`" >>  ${HOME}/.alias
+	echo "alias $@" >> ${HOME}/.alias
+	alias $@
+}

@@ -1,0 +1,7 @@
+function yaml2json { python -c "import sys, json, yaml; data = sys.stdin.read(); print json.dumps(yaml.load(data), sort_keys=True, indent=4, separators=(',', ': '))"; }
+
+function json2yaml { python -c "import sys, json, yaml; data = sys.stdin.read(); print yaml.dump(json.loads(data), default_flow_style=False, indent=4)"; }
+
+function json { python -c "import sys, json; data = sys.stdin.read(); print json.dumps(json.loads(data), sort_keys=True, indent=4, separators=(',', ': '))"; }
+
+function yaml { python -c "import sys, yaml; data = sys.stdin.read(); print yaml.dump(yaml.load(data), default_flow_style=False, indent=4)"; }

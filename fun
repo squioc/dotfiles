@@ -3,3 +3,5 @@ function gmail-chk { curl -u $GMAIL_USERNAME --silent -k "https://mail.google.co
 function opencoffee-feed { feed.py "http://opencoffeerennes.com/feed/"; }
 
 function lacantine-feed { feed.py "http://www.lacantine-rennes.net/feed/"; }
+
+function base64() { python -c 'import sys; print open(sys.argv[1], "rb").read().encode("base64").replace("\n", "")' $1 }

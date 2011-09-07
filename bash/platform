@@ -1,0 +1,14 @@
+
+platform = $(uname);
+
+if [ -f ~/.bash_platform/$platform/env ]; then
+    . ~/.bash_platform/$platform/env
+fi
+
+if [ -f ~/.bash_platform/$platform/alias ]; then
+    . ~/.bash_platform/$platform/alias
+fi
+
+if [ -f ~/.bash_platform/$platform/fun ]; then
+    . ~/.bash_platform/$platform/fun
+fi

@@ -1,0 +1,9 @@
+
+function macport-cleanup() {
+    sudo port clean --all installed;
+    sudo port -f uninstall inactive;
+}
+
+function macport-outdated-package() {
+    port outdated | tail -n+2 | awk '{print $1}';
+}

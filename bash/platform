@@ -1,5 +1,5 @@
 
-platform = $(uname);
+platform=$(echo $(uname) | tr '[:upper:]' '[:lower:]');
 
 if [ -f ~/.bash_platform/$platform/env ]; then
     . ~/.bash_platform/$platform/env

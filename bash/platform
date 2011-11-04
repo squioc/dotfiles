@@ -1,6 +1,10 @@
 
 platform=$(echo $(uname) | tr '[:upper:]' '[:lower:]');
 
+if [ '$platform' = 'linux' ]; then
+    platform=$(python -c 'import platform; print platform.linux_distribution()[0]');
+fi
+
 if [ -f ~/.bash_platform/$platform/env ]; then
     . ~/.bash_platform/$platform/env
 fi

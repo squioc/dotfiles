@@ -1,0 +1,20 @@
+function apt-purge-config() {
+    aptitude purge ?config-file;
+}
+
+function apt-remove-obsolete-package() {
+    aptitude purge ?obsolete;
+}
+
+function apt-list-config() {
+    res=$(which grep-status);
+    if [ $? -ne 1]; then
+        grep-status -n -sPackage -FStatus confi-files;
+    else
+        dpkg-query -f '${Package} ${Status}\n' -W | grep config-files | cut -d" " -f1;
+    fi;
+}
+
+function apt-list-obsolete-package() {
+    aptitude search '?narrow(?installed, !?origin(Debian))!?obsolete';
+}

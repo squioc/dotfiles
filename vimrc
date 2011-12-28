@@ -26,7 +26,8 @@ set number
 let mapleader=","
 
 " Définition de l'encodage des fichiers
-set fileencoding=iso-8859-1
+set fileencoding=utf-8
+set encoding=utf-8
 
 " Activation de la bar de statut
 set ruler
@@ -86,7 +87,7 @@ endfunction
 nmap <F4> :call ToggleSpell()<CR>
 imap <F4> <Esc>:call ToggleSpell()<CR>a
 
-" Auto-compl�tion Multiple
+" Auto-complétion Multiple
 function! MultipleAutoCompletion()
     if &omnifunc != ''
         return "\<C-x>\<C-o>"

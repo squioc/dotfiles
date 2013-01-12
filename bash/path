@@ -1,0 +1,11 @@
+if [ -x ~/.vendor/path.py ]; then
+
+	if [ -f ~/.path ]; then
+		~/.vendor/path.py ~/.path
+	fi
+
+	if [ -d ~/.path.d ]; then
+		~/.vendor/path.py ~/.path.d/*
+	fi
+
+fi

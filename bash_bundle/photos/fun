@@ -1,0 +1,42 @@
+
+function autorotate {
+    local img="$1";
+    
+    if [ -f "$img" ]; then
+        local orientation=$(identify -format '%[exif:orientation]' "$img");
+
+        case "$orientation" in
+            1)   transform=""   ;;
+            2)   transform="-flop"   ;;
+            3)   transform="-rotate 180"   ;;
+            4)   transform="-flip"   ;;
+            5)   transform="-transpose"   ;;
+            6)   transform="-rotate 90"   ;;
+            7)   transform="-transverse"   ;;
+            8)   transform="-rotate 270"   ;;
+            *)   transform=""   ;;
+        esac
+
+        if [ -n "$transform" ]; then
+            local tempfile=$(mktemp img.XXXXX);
+            convert "$img" $transform "$tempfile";
+            mv "$tempfile" "$img";
+        fi
+    fi
+}
+
+function convert-strip-metadata {
+    local img="$1";
+    if [ -f "$img" ]; then
+        local tempfile=$(mktemp img.XXXXX);
+        convert "$img" -strip "$tempfile";
+        mv "$tempfile" "$img";
+    fi
+}
+
+function exiftool-strip-metadata {
+    local img="$1";
+    if [ -f "$img" ]; then
+        exiftool -all= -overwrite_original "$img";
+    fi
+}

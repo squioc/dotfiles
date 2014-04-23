@@ -1,0 +1,6 @@
+# docker bash function tips from http://kartar.net/2014/03/some-useful-docker-bash-functions-and-aliases/
+
+drm() { docker rm $(docker ps -q -a); }
+dri() { docker rmi $(docker images -q); }
+db() { docker build -t="$1" .; }
+

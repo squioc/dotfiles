@@ -1,11 +1,11 @@
-if [ -x ~/.vendor/path.py ]; then
+if [ -f ~/.path ]; then
+    for path in $(cat ~/.path); do
+        export PATH="$PATH:$path"
+    done
+fi
 
-	if [ -f ~/.path ]; then
-		~/.vendor/path.py ~/.path
-	fi
-
-	if [ -d ~/.path.d ]; then
-		~/.vendor/path.py ~/.path.d/*
-	fi
-
+if [ -d ~/.path.d ]; then
+    for path in $(cat ~/.path.d/*); do
+        export PATH="$PATH:$path"
+    done
 fi

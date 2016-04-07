@@ -1,4 +1,4 @@
-﻿for file in $(ls ~/.bash_bundle); do
+for file in $(ls ~/.bash_bundle); do
   if [ -f ~/.bash_bundle/$file/env ]; then
      . ~/.bash_bundle/$file/env
   fi

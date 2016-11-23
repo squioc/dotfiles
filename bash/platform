@@ -1,5 +1,5 @@
 
-platform=$(echo $(uname) | tr '[:upper:]' '[:lower:]');
+platform=$(python -c 'import platform; print platform.uname()[0].lower()');
 
 if [ '$platform' = 'linux' ]; then
     platform=$(python -c 'import platform; print platform.linux_distribution()[0]');

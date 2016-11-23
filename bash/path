@@ -1,11 +1,13 @@
 if [ -f ~/.path ]; then
-    for path in $(cat ~/.path); do
-        export PATH="$PATH:$path"
+    for dir in $(cat ~/.path); do
+        PATH="${PATH}:$dir"
     done
+    export PATH
 fi
 
 if [ -d ~/.path.d ]; then
-    for path in $(cat ~/.path.d/*); do
-        export PATH="$PATH:$path"
+    for dir in $(cat ~/.path.d/*); do
+        PATH="${PATH}:$dir"
     done
+    export PATH
 fi

@@ -3,17 +3,18 @@ filetype off
 call plug#begin('~/.vim/bundle')
 
 " Base Plugs
-Plug 'SirVer/ultisnips'
 Plug 'amix/vim-zenroom2'
 Plug 'davidoc/taskpaper.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'yegappan/mru'
 Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'honza/vim-snippets'
 Plug 'jonhiggs/vim-readline'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/vim-peekaboo'
-Plug 'kien/ctrlp.vim', { 'on': ['CtrlP', 'CtrlPMRU'] }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'matchit.zip'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'reedes/vim-lexical'
@@ -22,15 +23,12 @@ Plug 'scrooloose/syntastic'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
-Plug 'tyru/open-browser.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'rhysd/clever-f.vim'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'chrisbra/unicode.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'kana/vim-textobj-user'
 Plug 'mechatroner/rainbow_csv'
 Plug 'humus/code-slices.vim'
@@ -47,7 +45,6 @@ Plug 'endel/vim-github-colorscheme'
 " Markup Plugs
 Plug 'dagwieers/asciidoc-vim'
 Plug 'plasticboy/vim-markdown'
-Plug 'kurocode25/mdforvim'
 
 " Configuration Plugs
 Plug 'pearofducks/ansible-vim'
@@ -78,13 +75,9 @@ Plug 'christoomey/vim-conflicted'
 Plug 'dkprice/vim-easygrep'
 Plug 'hotwatermorning/auto-git-diff'
 Plug 'mattn/gist-vim'
-Plug 'gregsexton/gitv', { 'on': 'Gitv' }
-Plug 'jaxbot/github-issues.vim'
-Plug 'sidorares/node-vim-debugger'
 Plug 'tpope/vim-git'
 Plug 'vim-scripts/taglist.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist' " see github.com/tpope/vim-projectionist for the config
 Plug 'alvan/vim-closetag'
 

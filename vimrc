@@ -95,6 +95,7 @@ syntax on
 filetype indent plugin on
 
 colorscheme solarized
+set background=light
 
 if has("gui_running")
 

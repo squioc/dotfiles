@@ -1,3 +1,0 @@
-export WORKON="~/.virtualenv"
-
-. /usr/local/bin/virtualenvwrapper.sh

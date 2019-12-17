@@ -1,6 +1,0 @@
-for dir in $(ls ~/.python_lib/); do
-  if [ -d "$HOME/.python_lib/$dir" ]; then
-	PYTHONPATH="$PYTHONPATH:$HOME/.python_lib/$dir";
-  fi
-done
-export PYTHONPATH

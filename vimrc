@@ -3,70 +3,63 @@ filetype off
 call plug#begin('~/.vim/bundle')
 
 " Base Plugs
-Plug 'amix/vim-zenroom2'
-Plug 'davidoc/taskpaper.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'yegappan/mru'
 Plug 'ervandew/supertab'
-Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-Plug 'honza/vim-snippets'
-Plug 'jonhiggs/vim-readline'
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'junegunn/vim-peekaboo'
+Plug 'adelarsq/vim-matchit'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'matchit.zip'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'reedes/vim-lexical'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTree'] }
-Plug 'scrooloose/syntastic'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-notes'
 Plug 'chrisbra/unicode.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'kana/vim-textobj-user'
-Plug 'mechatroner/rainbow_csv'
-Plug 'humus/code-slices.vim'
+
+" Writing Plugs
+Plug 'amix/vim-zenroom2'
+Plug 'reedes/vim-lexical'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+" Text Plug
+Plug 'davidoc/taskpaper.vim'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'vimwiki/vimwiki'
 
 " Colorscheme Plugs
 Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/tomorrow-theme'
+Plug 'chriskempson/tomorrow-theme', { 'rtp' : 'vim' }
 Plug 'reedes/vim-colors-pencil'
 Plug 'vim-scripts/vylight'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/summerfruit256.vim'
 Plug 'endel/vim-github-colorscheme'
+Plug 'rakr/vim-one'
 
 " Markup Plugs
 Plug 'dagwieers/asciidoc-vim'
 Plug 'plasticboy/vim-markdown'
 
 " Configuration Plugs
-Plug 'pearofducks/ansible-vim'
 Plug 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-Plug 'nginx/nginx', {'rtp': '/contrib/vim/'}
-Plug 'hashivim/vim-packer'
-Plug 'hashivim/vim-consul'
-Plug 'hashivim/vim-nomadproject'
-Plug 'hashivim/vim-terraform'
-Plug 'hashivim/vim-vagrant'
-Plug 'hashivim/vim-vaultproject'
-Plug 'tejr/vim-tmux'
 
 " Languages Plugs
 Plug 'sheerun/vim-json'
-Plug 'cespare/vim-toml'
 Plug 'stephpy/vim-yaml'
 Plug 'fatih/vim-go'
 Plug 'othree/html5.vim'
 Plug 'sheerun/yajs.vim'
-Plug 'derekwyatt/vim-scala'
-Plug 'gre/play2vim'
+Plug 'w0rp/ale'
+Plug 'ambv/black'
+Plug 'Chiel92/vim-autoformat'
+Plug 'integralist/vim-mypy'
 
 " Others Plugs
 Plug 'airblade/vim-gitgutter'
@@ -74,12 +67,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'christoomey/vim-conflicted'
 Plug 'dkprice/vim-easygrep'
 Plug 'hotwatermorning/auto-git-diff'
-Plug 'mattn/gist-vim'
-Plug 'tpope/vim-git'
 Plug 'vim-scripts/taglist.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-projectionist' " see github.com/tpope/vim-projectionist for the config
 Plug 'alvan/vim-closetag'
+Plug 'bfrg/vim-jqplay'
+Plug 'wfxr/minimap.vim'
 
 call plug#end()
 
@@ -87,15 +79,17 @@ call plug#end()
 syntax on
 filetype indent plugin on
 
-colorscheme solarized
-set background=light
+colorscheme peachpuff
+set background=dark
 
 if has("gui_running")
 
     " Windows decoration
     set guioptions-=T
     set guioptions+=b
-    set guifont=Consolas
+    set guifont=HackNerdFontComplete-Regular:h11
+    set background=light
+    colorscheme Tomorrow
 
 endif
 
@@ -104,6 +98,9 @@ set noswapfile
 
 " relative number
 set relativenumber
+
+" line number
+set number
 
 " Change the leader key
 let mapleader=","
@@ -135,28 +132,64 @@ set showmatch
 " Highlight the line under the cursor
 set cursorline
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 " Notes configuration
-let g:notes_directories = ['~/Documents/Notes']
-let g:notes_suffix = '.txt'
+let g:vimwiki_list = [{'path': '~/notes/wiki',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Markdown configurations
 let g:markdown_fenced_languages = ['html', 'go', 'js', 'python', 'scala', 'bash=sh']
 
-" github issue configurations
-let g:github_access_token = ""
+" language-tool
+" let g:syntastic_text_checkers = ['language_check']
+" let g:syntastic_text_language_check_args = '--language=en-US'
+let g:syntastic_markdown_checkers = ['language_check']
+let g:syntastic_markdown_language_check_args = '--language=en-US'
 
-" Display a message
-function! s:DisplayStatus(msg)
-   echo a:msg
+" NERDTree
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeStatusline = ''
+" Automaticaly close nvim if NERDTree is only thing left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Toggle
+nnoremap <silent> <C-b> :NERDTreeToggle<CR>
+
+" Taglist
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_Use_Right_Window = 1
+nnoremap <C-c> :TlistToggle<CR>
+
+" Undotree
+let g:undotree_WindowLayout = 'style 3'
+nnoremap <C-h> :UndotreeToggle<CR>
+
+" Minimap
+nnoremap <C-m> :MinimapToggle
+
+" Terminal
+" open new split panes to right and below
+set splitright
+set splitbelow
+
+" turn terminal to normal mode with escape
+tnoremap <Esc> <C-\><C-n>
+
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+" open terminal on ctrl+n
+function! OpenTerminal()
+  term
+  resize 10
 endfunction
+nnoremap <c-t> :call OpenTerminal()<CR>
+
+nnoremap <C-p> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
 
 " Make shellbang scripts executable
 function! ModeChange()
@@ -167,16 +200,28 @@ function! ModeChange()
     endif
 endfunction
 
-au BufWritePost * call ModeChange()
+" au BufWritePost * call ModeChange()
 
 " Add shellbang to bash and python scripts
-au BufNewFile *.sh,*.bash 0put=\"#!/bin/bash\<nl># -*- coding: UTF8 -*-\<nl>\<nl>\"|$
-au BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl># -*- coding: UTF8 -*-\<nl>\<nl>\"|$
+au BufNewFile *.sh,*.bash 0put=\"#!/bin/bash\<nl># coding: utf-8 \<nl>\<nl>\"|$
+au BufNewFile *.py 0put=\"#!/usr/bin/env python\<nl># coding: utf-8 \<nl>\<nl>\"|$
 
 " Apply filetypes according to filename or extension
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 autocmd BufNewFile,BufReadPost todo set filetype=taskpaper
+autocmd BufNewFile,BufReadPost *.tsv set filetype=tsv
 
+" Check python script with Flake8 on write
+autocmd BufWritePost *.py call Flake8()
+
+" Format xml
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" Format json
+au FileType json setlocal equalprg=jq\ .\ -\ 2>/dev/null
+
+" Format yaml
+au FileType yaml setlocal equalprg=yq\ .\ -\ 2>/dev/null
 
 " Spelling check
 function! ToggleSpell()

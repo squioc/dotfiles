@@ -1,6 +1,23 @@
-# docker bash function tips from http://kartar.net/2014/03/some-useful-docker-bash-functions-and-aliases/
+function run_with_docker() {
+    docker run --rm -it -u $UID -v $PWD:/sandbox -v $HOME:$HOME -e HOME=$HOME -w /sandbox --entrypoint=$3 $1:$2 ${@:4}
+}
 
-drm() { docker rm $(docker ps -q -a); }
-dri() { docker rmi $(docker images -q); }
-db() { docker build -t="$1" .; }
+function docker_ip() {
+    echo ${DOCKER_HOST} | cut -d':' -f2 | tr -d '/'
+}
 
+docker-pull-and-tag() {
+    docker pull "$1" && docker tag "$1" "$2"
+}
+
+docker-container-delete-all() { docker rm $(docker ps -q -a); }
+
+docker-images-delete-all() { docker rmi $(docker images -q); }
+
+docker-images-delete-none() {
+    docker images | grep none | awk '{print $3}' | xargs docker rmi -f 2>/dev/null
+}
+
+docker-images-delete-select() {
+    docker images | peco | awk '{print $3}' | xargs docker rmi -f 2>/dev/null
+}
